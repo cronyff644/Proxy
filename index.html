@@ -63,18 +63,25 @@
             </p>
         </div>
 
-        <!-- Main Video Container -->
-        <div class="relative w-full aspect-[16/9] max-h-[26vh] sm:max-h-[28vh] rounded-2xl overflow-hidden shadow-[0_15px_40px_-10px_rgba(0,0,0,0.9)] border border-purple-500/20 bg-[#120e1a] p-[2px]">
+        <!-- Main Video Container with Center Play/Pause Overlay Button -->
+        <div class="relative w-full aspect-[16/9] max-h-[26vh] sm:max-h-[28vh] rounded-2xl overflow-hidden shadow-[0_15px_40px_-10px_rgba(0,0,0,0.9)] border border-purple-500/20 bg-[#120e1a] p-[2px] group cursor-pointer" onclick="togglePlayPause()">
             
             <!-- Soft Purple Back-Glow -->
             <div class="absolute inset-0 bg-gradient-to-tr from-purple-600/20 via-transparent to-pink-500/10 pointer-events-none z-0"></div>
 
             <!-- The Video Player -->
-            <div class="relative w-full h-full z-10 rounded-[14px] overflow-hidden bg-black shadow-inner">
-                <video class="w-full h-full object-cover" controls poster="Screenshot 2026-09-10 151933.png">
-                    <source src="New Project 86 [6E1A73A].mp4" type="video/mp4">
+            <div class="relative w-full h-full z-10 rounded-[14px] overflow-hidden bg-black shadow-inner flex items-center justify-center">
+                <video id="custom-video" class="w-full h-full object-cover" preload="metadata" onplay="updatePlayButtonState(true)" onpause="updatePlayButtonState(false)">
+                    <source src="https://raw.githubusercontent.com/vijayfan/Vijayhere/224515ad89d722466536e09f93fc6ca7d874237e/make%20money%20spin.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+
+                <!-- Center Play/Pause Overlay Button -->
+                <div id="play-overlay-btn" class="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 z-20">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-purple-600/90 border border-purple-400/50 flex items-center justify-center text-white shadow-[0_0_20px_rgba(168,85,247,0.6)] backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                        <i id="play-icon-symbol" class="fas fa-play text-lg md:text-xl ml-0.5"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -110,7 +117,7 @@
         <!-- Gap after Live Members -->
         <div class="w-full h-1.5"></div>
 
-        <!-- Bottom Premium Card (With PNG Shining & Button Shining Effects) -->
+        <!-- Bottom Premium Card (Compact Size Restored) -->
         <div class="relative w-full aspect-[16/9] max-w-lg md:max-w-xl rounded-2xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)] border border-purple-500/25 bg-[#181124]/90 p-3.5 md:p-4 flex flex-col items-center justify-between backdrop-blur-md mb-2">
             
             <!-- Soft Ambient Purple Back-Glow -->
@@ -154,7 +161,7 @@
 
                 <!-- Bada & Prominent Green Install Button (WITH CONTINUOUS SHINING SHIMMER) -->
                 <div class="w-full pt-1">
-                    <a href="https://earnsio.in/click/u/66/o/70" target="_blank" class="relative group block w-full rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 py-3 md:py-3.5 text-sm md:text-base font-extrabold uppercase tracking-widest text-white shadow-[0_10px_30px_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden border border-emerald-400/60 text-center">
+                    <a href="https://ibemmm.vulav.site/?key=tlhhwmm13" target="_blank" class="relative group block w-full rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 py-3 md:py-3.5 text-sm md:text-base font-extrabold uppercase tracking-widest text-white shadow-[0_10px_30px_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden border border-emerald-400/60 text-center">
                         <span class="relative z-10 flex items-center justify-center gap-2">
                             <i class="fas fa-shield-alt text-base md:text-lg"></i> Install Securely
                         </span>
@@ -173,7 +180,7 @@
 
     </div>
 
-    <!-- Live Counter Script -->
+    <!-- Scripts for Counters and Custom Center Play/Pause -->
     <script>
         let baseMembers = 48215;
         let baseDownloads = 425910;
@@ -191,6 +198,31 @@
         }
 
         setInterval(updateCounters, 2500);
+
+        // Custom Video Center Play/Pause Logic
+        const videoElem = document.getElementById('custom-video');
+        const overlayBtn = document.getElementById('play-overlay-btn');
+        const playIconSymbol = document.getElementById('play-icon-symbol');
+
+        function togglePlayPause() {
+            if (videoElem.paused) {
+                videoElem.play();
+            } else {
+                videoElem.pause();
+            }
+        }
+
+        function updatePlayButtonState(isPlaying) {
+            if (isPlaying) {
+                overlayBtn.style.opacity = '0';
+                overlayBtn.style.pointerEvents = 'none';
+                playIconSymbol.className = 'fas fa-pause text-lg md:text-xl';
+            } else {
+                overlayBtn.style.opacity = '1';
+                overlayBtn.style.pointerEvents = 'auto';
+                playIconSymbol.className = 'fas fa-play text-lg md:text-xl ml-0.5';
+            }
+        }
     </script>
 
 </body>
